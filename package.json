@@ -26,6 +26,9 @@
     "test:watch": "vitest",
     "coverage": "vitest run --coverage"
   },
+  "dependencies": {
+    "@opinionated-ts/primitives": "^0.1.0"
+  },
   "devDependencies": {
     "@opinionated-ts/config": "^1.8.10",
     "@types/bun": "^1.4.0",
