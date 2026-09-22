@@ -71,35 +71,17 @@ export function mergeErrorOptions<
   const code = fixed?.code ?? error.code ?? defaults?.code;
   const message = fixed?.message ?? error.message ?? defaults?.message;
 
-  const internalContext = merge(
-    defaults?.context?.internal,
-    error.context?.internal,
-    fixed?.context?.internal,
-  );
+  const hasContext =
+    defaults?.context !== undefined || error.context !== undefined || fixed?.context !== undefined;
 
-  const publicContext = merge(
-    defaults?.context?.public,
-    error.context?.public,
-    fixed?.context?.public,
-  );
+  const context = hasContext ? merge(defaults?.context, error.context, fixed?.context) : undefined;
 
   const result: Mutable<ErrorOptions> = {};
 
   if (cause !== undefined) result.cause = cause;
   if (code !== undefined) result.code = code;
   if (message !== undefined) result.message = message;
-
-  if (internalContext !== undefined || publicContext !== undefined) {
-    result.context = {};
-
-    if (internalContext !== undefined) {
-      result.context.internal = internalContext;
-    }
-
-    if (publicContext !== undefined) {
-      result.context.public = publicContext;
-    }
-  }
+  if (context !== undefined) result.context = context;
 
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   return result as MergeErrorOptions<Defaults, Options, Fixed>;
