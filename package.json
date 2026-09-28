@@ -10,10 +10,15 @@
     "LICENSE"
   ],
   "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
+    "build": "tsdown",
     "cspell": "cspell lint .",
     "fmt": "oxfmt --check .",
     "fmt:fix": "oxfmt .",
