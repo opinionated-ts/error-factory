@@ -1,6 +1,6 @@
 import type { ErrorOptions } from "@/base-error/types";
 
-import { BaseError as ErrorInstance } from "@/base-error/base";
+import { BaseError } from "@/base-error/base";
 import { captureStackTrace } from "@/utils/stack-trace";
 
 import type { CreateErrorOptions, ErrorFactory } from "./types";
@@ -82,9 +82,9 @@ export function createError<
    * Concrete error class used internally by the generated factory.
    *
    * The class applies factory defaults, caller options, and fixed values before
-   * delegating the final initialization to {@link ErrorInstance}.
+   * delegating the final initialization to {@link BaseError}.
    */
-  const GeneratedError = class extends ErrorInstance {
+  const GeneratedError = class extends BaseError {
     /**
      * Creates an error instance using the configured error options.
      *
@@ -100,10 +100,13 @@ export function createError<
 
       // oxlint-disable-next-line typescript/no-unsafe-type-assertion - The `merged` object is explicitly typed as an `ErrorOptions` with a guaranteed `code` property.
       super(merged as ErrorOptions & { code: string });
-
-      this.name = name;
     }
   };
+
+  Object.defineProperty(GeneratedError, "name", {
+    value: name,
+    configurable: true,
+  });
 
   /**
    * Creates an instance of the generated error class.
@@ -118,6 +121,11 @@ export function createError<
 
     return instance;
   }
+
+  Object.defineProperty(create, "name", {
+    value: name,
+    configurable: true,
+  });
 
   create.prototype = GeneratedError.prototype;
 
