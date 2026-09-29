@@ -75,7 +75,11 @@ export function createError<
   const Name extends string = "Error",
   const Defaults extends ErrorOptions = {},
   const Fixed extends ErrorOptions = {},
->(options: CreateErrorOptions<Name, Defaults, Fixed>): ErrorFactory<Name, Defaults, Fixed> {
+>(options: {
+  name?: Name;
+  defaults?: ErrorOptions;
+  fixed?: ErrorOptions;
+}): ErrorFactory<Name, Defaults, Fixed> {
   const name = options.name ?? "Error";
 
   /**
@@ -114,7 +118,7 @@ export function createError<
    * @param error - Error options resolved using the factory configuration.
    * @returns A configured error instance.
    */
-  function create(error: ErrorOptions) {
+  function create(error: ErrorOptions = {}) {
     const instance = new GeneratedError(error);
 
     captureStackTrace(instance, create);
