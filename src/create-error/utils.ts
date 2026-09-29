@@ -67,9 +67,9 @@ export function mergeErrorOptions<
   const Options extends ErrorOptions,
   const Fixed extends ErrorOptions | undefined,
 >(defaults: Defaults, error: Options, fixed: Fixed): MergeErrorOptions<Defaults, Options, Fixed> {
-  const cause = fixed?.cause ?? error.cause ?? defaults?.cause;
-  const code = fixed?.code ?? error.code ?? defaults?.code;
-  const message = fixed?.message ?? error.message ?? defaults?.message;
+  const cause = fixed?.cause ?? error?.cause ?? defaults?.cause;
+  const code = fixed?.code ?? error?.code ?? defaults?.code;
+  const message = fixed?.message ?? error?.message ?? defaults?.message;
 
   const hasContext =
     defaults?.context !== undefined || error.context !== undefined || fixed?.context !== undefined;
