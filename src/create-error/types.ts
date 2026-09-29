@@ -14,9 +14,8 @@ type ErrorInstance<
   Code extends string,
   Message extends string,
   Context extends ErrorContext,
-> = Omit<BaseError<Code, Message, Context>, "context"> & {
+> = BaseError<Code, Message, Context> & {
   readonly name: Name;
-  readonly context: Context;
 };
 
 /**
@@ -71,6 +70,17 @@ type ErrorMessage<
       : string;
 
 /**
+ * Extracts the concrete context type from error options.
+ *
+ * Returns an empty object when the options type does not define a `context`
+ * property, preventing the generic `ErrorContext` constraint from affecting
+ * context inference.
+ *
+ * @typeParam T - Error options type from which to extract the context.
+ */
+type ContextOf<T extends ErrorOptions> = "context" extends keyof T ? NonNullable<T["context"]> : {};
+
+/**
  * Represents the final context stored on the created error.
  *
  * Default context, per-error context, and fixed context are combined
@@ -80,9 +90,12 @@ export type ResolvedContext<
   Defaults extends ErrorOptions,
   Options extends ErrorOptions,
   Fixed extends ErrorOptions,
-> = SimplifyDeep<
-  Extract<Merge<Merge<Defaults["context"], Options["context"]>, Fixed["context"]>, ErrorContext>
->;
+> =
+  SimplifyDeep<
+    Merge<Merge<ContextOf<Defaults>, ContextOf<Options>>, ContextOf<Fixed>>
+  > extends infer Context extends ErrorContext
+    ? Context
+    : ErrorContext;
 
 type FactoryErrorOptions<
   Defaults extends ErrorOptions,
