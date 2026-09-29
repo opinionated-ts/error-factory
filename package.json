@@ -1,8 +1,8 @@
 {
-  "name": "@opinionated-ts/errors",
+  "name": "@opinionated-ts/error-factory",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/opinionated-ts/errors.git"
+    "url": "git+https://github.com/opinionated-ts/error-factory.git"
   },
   "files": [
     "dist",
