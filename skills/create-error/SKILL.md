@@ -50,9 +50,10 @@ Use `defaults` for shared values that an individual call may override.
 
 Use `fixed` only for values that must remain under the factory's control.
 
-The precedence is:
-
-`fixed` → per-error options → `defaults`
+`defaults` provides a starting value. A value passed when creating an error
+replaces that default, while a value in `fixed` is controlled by the factory
+and takes precedence over both. In other words, calls can customize defaults,
+but cannot change fixed values.
 
 For example:
 
@@ -86,7 +87,9 @@ const error = ApiError({
 });
 ```
 
-`code` cannot be overridden because it is defined in `fixed`.
+`code` cannot be overridden because it is defined in `fixed`. The runtime
+implementation applies fixed values last, even if conflicting options reach
+it; TypeScript also rejects those options in normal use.
 
 Objects are merged recursively. This also allows only part of an object to be fixed while leaving its other properties configurable.
 
