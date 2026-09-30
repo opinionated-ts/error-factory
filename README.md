@@ -48,9 +48,10 @@ const error = ValidationError({
 
 error.code; // "INVALID_EMAIL"
 error.message; // "The email address is invalid."
-error.context?.public?.field; // "email"
+error.context.public.field; // "email"
 
 error instanceof ValidationError; // true
+error instanceof Error; // true
 ```
 
 No custom error class. No manual error type. The type is inferred from the factory and the values you provide.
@@ -64,11 +65,11 @@ No custom error class. No manual error type. The type is inferred from the facto
 
 ## Related
 
-Part of the [Opinionated TS](https://github.com/opinionated-ts) ecosystem.
+This project is part of the [Opinionated TS](https://github.com/opinionated-ts) ecosystem, and here are some related projects:
 
 - [`@opinionated-ts/result`](https://github.com/opinionated-ts/result) — handle expected failures as typed `Result` values instead of throwing.
-- [`package-template`](https://github.com/opinionated-ts/package-template) — an experimental template for TypeScript packages, libraries, CLIs, and SDKs.
-- [`web-template`](https://github.com/opinionated-ts/web-template) — an experimental template for TypeScript web projects.
+- [`@opinionated-ts/package-template`](https://github.com/opinionated-ts/package-template) — an experimental template for TypeScript packages, libraries, CLIs, and SDKs.
+- [`@opinionated-ts/web-template`](https://github.com/opinionated-ts/web-template) — an experimental template for web projects.
 
 ## License
 

@@ -176,7 +176,7 @@ const error = ValidationError({
   },
 });
 
-error.context?.internal?.requestId;
+error.context.internal.requestId;
 ```
 
 `context.public` is included in `toJSON()` and JSON serialization.
@@ -214,6 +214,7 @@ const error = ValidationError({
 });
 
 error instanceof ValidationError; // true
+error instanceof Error; // true
 ```
 
 This makes factories useful when errors need to be handled by their specific type.

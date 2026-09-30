@@ -55,7 +55,7 @@ Its values are inferred from the factory and the call:
 ```ts
 error.code; // "INVALID_EMAIL"
 error.message; // "Validation failed."
-error.context?.public?.field; // "email"
+error.context.public.field; // "email"
 ```
 
 No custom error class or manual error type is required.

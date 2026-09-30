@@ -42,6 +42,7 @@ The created error keeps the configured `name` and can be recognized with `instan
 
 ```ts
 error instanceof ValidationError; // true
+error instanceof Error; // true
 ```
 
 ## `defaults` and `fixed`

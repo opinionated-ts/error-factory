@@ -141,13 +141,13 @@ const error = ApiError({
 The resulting error keeps the combined shape:
 
 ```ts
-error.context?.internal?.source;
+error.context.internal.source;
 // "api"
 
-error.context?.internal?.requestId;
+error.context.internal.requestId;
 // "req_123"
 
-error.context?.public?.field;
+error.context.public.field;
 // "email"
 ```
 
@@ -186,10 +186,10 @@ ApiError({
 The resulting context contains both values:
 
 ```ts
-error.context?.internal?.source;
+error.context.internal.source;
 // "api"
 
-error.context?.internal?.requestId;
+error.context.internal.requestId;
 // "req_123"
 ```
 
