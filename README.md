@@ -4,12 +4,6 @@ Create type-safe application errors with **exact TypeScript inference**.
 
 Define an error once. Reuse it everywhere. Let TypeScript keep the exact shape of every error you create.
 
-> [!WARNING]
->
-> This project is not yet recommended for production use.
->
-> The API is established, but further testing and real-world validation are needed before `1.0.0`.
-
 ## Why
 
 Application errors should be consistent, reusable, and precisely typed.

@@ -6,6 +6,9 @@
 
 ```bash
 bun add @opinionated-ts/error-factory
+# pnpm add @opinionated-ts/error-factory
+# yarn add @opinionated-ts/error-factory
+# npm install @opinionated-ts/error-factory
 ```
 
 ## Create a factory

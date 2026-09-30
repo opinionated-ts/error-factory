@@ -1,5 +1,32 @@
 {
   "name": "@opinionated-ts/error-factory",
+  "description": "Type-safe error factories with automatic, exact type inference for TypeScript.",
+  "keywords": [
+    "error",
+    "error-factory",
+    "error-serialization",
+    "errors",
+    "structured-errors",
+    "ts",
+    "type-safe",
+    "typed-errors",
+    "typescript"
+  ],
+  "homepage": "https://github.com/opinionated-ts/error-factory#readme",
+  "bugs": {
+    "url": "https://github.com/opinionated-ts/error-factory/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Opinionated TS",
+    "url": "https://github.com/opinionated-ts"
+  },
+  "contributors": [
+    {
+      "name": "Daniel A. Hernández Ochoa",
+      "url": "https://github.com/DanhezCode"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/opinionated-ts/error-factory.git"
@@ -46,7 +73,8 @@
     "typescript": "^7.0.2"
   },
   "engines": {
-    "bun": "^1.4.0"
+    "bun": "^1.2.0",
+    "node": "^24.0.0"
   },
   "packageManager": "bun@1.4.0"
 }
