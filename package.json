@@ -1,16 +1,15 @@
 {
   "name": "@opinionated-ts/error-factory",
-  "description": "Type-safe error factories with automatic, exact type inference for TypeScript.",
+  "description": "Type-safe functional error factories with automatic and exact type inference for TypeScript.",
   "keywords": [
     "error",
     "error-factory",
-    "error-serialization",
     "errors",
+    "exact-type-inference",
+    "functional-error-factory",
     "structured-errors",
-    "ts",
     "type-safe",
-    "typed-errors",
-    "typescript"
+    "typed-errors"
   ],
   "homepage": "https://github.com/opinionated-ts/error-factory#readme",
   "bugs": {

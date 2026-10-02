@@ -9,7 +9,7 @@ Create type-safe application errors with **exact TypeScript inference**.
 
 Define an error once. Reuse it everywhere. Let TypeScript keep the exact shape of every error you create.
 
-> ❤️ If you find `error-factory` useful, consider giving the repo a star — it helps support the project.
+> ❤️ If you find this project useful, consider giving the repo a star — it helps support the project.
 
 ## Why
 
