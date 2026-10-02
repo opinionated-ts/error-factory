@@ -1,8 +1,15 @@
 # @opinionated-ts/error-factory
 
+[![npm version](https://img.shields.io/npm/v/@opinionated-ts/error-factory)](https://www.npmjs.com/package/@opinionated-ts/error-factory)
+[![npm downloads](https://img.shields.io/npm/dm/@opinionated-ts/error-factory)](https://www.npmjs.com/package/@opinionated-ts/error-factory)
+[![CI](https://img.shields.io/github/actions/workflow/status/opinionated-ts/error-factory/check-and-release.yml?label=CI)](https://github.com/opinionated-ts/error-factory/actions/workflows/check-and-release.yml)
+[![License](https://img.shields.io/github/license/opinionated-ts/error-factory)](https://github.com/opinionated-ts/error-factory/blob/main/LICENSE)
+
 Create type-safe application errors with **exact TypeScript inference**.
 
 Define an error once. Reuse it everywhere. Let TypeScript keep the exact shape of every error you create.
+
+> ❤️ If you find `error-factory` useful, consider giving the repo a star — it helps support the project.
 
 ## Why
 
@@ -108,9 +115,19 @@ See [Type Inference](./docs/type-inference.md) for more details and examples.
 
 This project is part of the [Opinionated TS](https://github.com/opinionated-ts) ecosystem, and here are some related projects:
 
-- [`@opinionated-ts/result`](https://github.com/opinionated-ts/result) — handle expected failures as typed `Result` values instead of throwing.
-- [`@opinionated-ts/package-template`](https://github.com/opinionated-ts/package-template) — an experimental template for TypeScript packages, libraries, CLIs, and SDKs.
-- [`@opinionated-ts/web-template`](https://github.com/opinionated-ts/web-template) — an experimental template for web projects.
+- [`@opinionated-ts/result`](https://github.com/opinionated-ts/result) — handle failures as typed values so TypeScript can know which errors a piece of code may produce instead of throwing them.
+
+## Open Source for the Community
+
+Every project of the [Opinionated TS](https://github.com/opinionated-ts) ecosystem is **open source** and **free** for anyone to explore, use, or build on.
+
+**Contributions are more than welcome — they're the whole point.**
+
+- 💬 **Found a bug?** Open an issue.
+- ✨ **Have an idea?** Start a discussion.
+- 🔧 **Want to improve something?** Send a PR.
+
+Whether it's a typo, a bug fix, a new feature, or an improvement — every contribution helps a lot.
 
 ## License
 

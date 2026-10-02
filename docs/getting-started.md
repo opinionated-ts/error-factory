@@ -4,6 +4,8 @@
 
 ## Install
 
+Install with your preferred package manager:
+
 ```bash
 bun add @opinionated-ts/error-factory
 # pnpm add @opinionated-ts/error-factory
