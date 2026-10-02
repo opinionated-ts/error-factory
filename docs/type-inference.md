@@ -253,4 +253,4 @@ resulting error type describe the value the implementation actually creates.
 
 ## Next steps
 
-- [Install the `create-error` skill](../skills/README.md) — add package-specific guidance to your coding agent.
+- [Install the `create-error` skill](https://github.com/opinionated-ts/error-factory/tree/main/skills) — add package-specific guidance to your coding agent.

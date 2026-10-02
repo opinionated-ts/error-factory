@@ -109,7 +109,7 @@ See [Type Inference](./docs/type-inference.md) for more details and examples.
 - [Getting Started](./docs/getting-started.md) — install the package and create your first error factory.
 - [Creating Errors](./docs/how-to-create-errors.md) — configure defaults, fixed values, context, and causes.
 - [Type Inference](./docs/type-inference.md) — learn how factories preserve exact literal and nested types.
-- [Install the `create-error` skill](./skills/README.md) — add this package's guidance to your coding agent.
+- [Install the `create-error` skill](https://github.com/opinionated-ts/error-factory/tree/main/skills) — add this package's guidance to your coding agent.
 
 ## Related
 
