@@ -24,6 +24,10 @@ export const ValidationError = createError({
   defaults: {
     message: "Validation failed.",
   },
+
+  fixed: {
+    code: "INVALID_EMAIL",
+  },
 });
 ```
 
@@ -33,7 +37,7 @@ Call the factory directly:
 
 ```ts
 const error = ValidationError({
-  code: "INVALID_EMAIL",
+  message: "The email address is invalid.",
   context: {
     public: {
       field: "email",

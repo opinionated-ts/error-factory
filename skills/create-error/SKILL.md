@@ -1,6 +1,6 @@
 ---
 name: create-error
-description: "Use for tasks involving `createError` from `@opinionated-ts/error-factory`, especially creating or configuring error factories, setting defaults or fixed values, and creating typed errors with codes, messages, context, or causes."
+description: "Use for tasks involving `createError` from `@opinionated-ts/error-factory`, especially creating type-safe error factories and their errors with exact, automatic type inference."
 ---
 
 # Using `createError`
@@ -19,6 +19,9 @@ export const ValidationError = createError({
   defaults: {
     message: "Validation failed",
   },
+  fixed: {
+    code: "INVALID_EMAIL",
+  },
 });
 ```
 
@@ -26,7 +29,6 @@ The factory is called directly; it is not instantiated with `new`.
 
 ```ts
 const error = ValidationError({
-  code: "INVALID_EMAIL",
   message: "The email address is invalid.",
   context: {
     public: {
@@ -98,6 +100,8 @@ Objects are merged recursively. This also allows only part of an object to be fi
 
 Every error must have a final `code`.
 
+Prefer `fixed.code` when every error from a factory shares the same code. Use a per-error code when calls to the same factory need different codes.
+
 It can come from:
 
 - `fixed.code`
@@ -156,7 +160,6 @@ try {
   await repository.save(user);
 } catch (cause) {
   throw ValidationError({
-    code: "SAVE_FAILED",
     cause,
   });
 }
@@ -172,7 +175,6 @@ For example:
 
 ```ts
 const error = ValidationError({
-  code: "INVALID_EMAIL",
   message: "The email is invalid.",
 });
 ```
@@ -193,6 +195,8 @@ Use this inference to keep errors type-safe without manually declaring the type 
 - Do not instantiate the factory with `new`.
 - Do not put secrets in `context.internal`.
 
-## Related
+## Related & Optionally
+
+Optionally, see the [`@opinionated-ts/error-factory`](https://github.com/opinionated-ts/error-factory) repository for more in-depth guidance about the package, only if this skill does not answer your question or you need additional details.
 
 For functional error handling without throwing, optionally pair `@opinionated-ts/error-factory` with `@opinionated-ts/result` when available.

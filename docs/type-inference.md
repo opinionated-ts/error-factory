@@ -15,10 +15,13 @@ const ValidationError = createError({
   defaults: {
     message: "Validation failed.",
   },
+
+  fixed: {
+    code: "INVALID_EMAIL",
+  },
 });
 
 const error = ValidationError({
-  code: "INVALID_EMAIL",
   message: "The email address is invalid.",
 });
 ```
@@ -47,14 +50,15 @@ Defaults are part of the resulting type:
 
 ```ts
 const ValidationError = createError({
+  fixed: {
+    code: "INVALID_EMAIL",
+  },
   defaults: {
     message: "Validation failed.",
   },
 });
 
-const error = ValidationError({
-  code: "INVALID_EMAIL",
-});
+const error = ValidationError();
 ```
 
 The message is inferred from the factory:
@@ -68,7 +72,6 @@ Per-error values are more specific and therefore replace the default:
 
 ```ts
 const error = ValidationError({
-  code: "INVALID_EMAIL",
   message: "The email address is invalid.",
 });
 
@@ -116,6 +119,9 @@ Context is also inferred from the values provided by the factory and the individ
 
 ```ts
 const ApiError = createError({
+  fixed: {
+    code: "REQUEST_FAILED",
+  },
   defaults: {
     context: {
       internal: {
@@ -126,7 +132,6 @@ const ApiError = createError({
 });
 
 const error = ApiError({
-  code: "REQUEST_FAILED",
   context: {
     public: {
       field: "email",
@@ -160,6 +165,7 @@ Fixed values can also apply to part of a nested object:
 ```ts
 const ApiError = createError({
   fixed: {
+    code: "REQUEST_FAILED",
     context: {
       internal: {
         source: "api",
@@ -173,8 +179,6 @@ The fixed property is controlled by the factory, while unrelated properties rema
 
 ```ts
 ApiError({
-  code: "REQUEST_FAILED",
-
   context: {
     internal: {
       requestId: "req_123",
@@ -199,8 +203,6 @@ The factory also checks the options passed to it rather than silently accepting 
 
 ```ts
 const error = ValidationError({
-  code: "INVALID_EMAIL",
-
   // @ts-expect-error
   unknownProperty: true,
 });
@@ -218,6 +220,18 @@ Without this approach, reusable application errors often require one of two thin
 `@opinionated-ts/error-factory` instead derives the type from the values you already write.
 
 That makes the type declaration and the implementation the same source of truth.
+
+## Explicit error types
+
+The recommended approach is to let TypeScript infer the error type directly from each factory call.
+
+If you need to reference the factory's return type explicitly, you can use `ReturnType`:
+
+```ts
+type ValidationErrorType = ReturnType<typeof ValidationError>;
+```
+
+This is **not recommended for specific error instances** because `ReturnType` describes the factory in general and cannot know which values a caller will provide, **so the exact inference of a specific factory call is lost**.
 
 ## Implementation notes
 

@@ -1,16 +1,27 @@
-# Install the `create-error` Skill
+# Install the `create-error` Skill from `@opinionated-ts/error-factory`
 
-The `create-error` skill gives coding agents guidance for using `@opinionated-ts/error-factory` consistently. Install it with [Vercel's Skills CLI](https://github.com/vercel-labs/skills):
+This skill teaches your AI coding agents how to use [`@opinionated-ts/error-factory`](https://github.com/opinionated-ts/error-factory) consistently and take advantage of its type-safe error factories.
+
+Install the `create-error` skill with [Vercel's Skills CLI](https://github.com/vercel-labs/skills).
+
+Install the skill by choosing the command for your preferred package manager:
 
 <!-- cspell:ignore bunx -->
 
 ```bash
-bunx skills add opinionated-ts/errors
-pnpm dlx skills add opinionated-ts/errors
-yarn dlx skills add opinionated-ts/errors
 npx skills add opinionated-ts/errors
+
+# bunx skills add opinionated-ts/errors
+# pnpm dlx skills add opinionated-ts/errors
+# yarn dlx skills add opinionated-ts/errors
 ```
 
-Each command runs the same installer through a different package manager. The CLI finds the skills in this repository and prompts you to choose which agent to install them for and whether to install them globally or in the current project.
+The CLI finds the skills in this repository and prompts you to choose which agent to install them for and whether to install them globally or in the current project.
 
-For the skill's instructions, see [`create-error`](./create-error/SKILL.md). For the package overview and documentation, see the [main README](../README.md).
+## Skill Source
+
+You can inspect the source code and instructions for the skill in [`create-error/SKILL.md`](./create-error/SKILL.md).
+
+## Back to the repository
+
+- [`@opinionated-ts/error-factory`](https://github.com/opinionated-ts/error-factory) — Package overview and documentation.

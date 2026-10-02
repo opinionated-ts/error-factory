@@ -13,6 +13,10 @@ export const ValidationError = createError({
   defaults: {
     message: "Validation failed.",
   },
+
+  fixed: {
+    code: "INVALID_EMAIL",
+  },
 });
 ```
 
@@ -20,7 +24,6 @@ Create individual errors by calling the factory:
 
 ```ts
 const error = ValidationError({
-  code: "INVALID_EMAIL",
   message: "The email address is invalid.",
 });
 ```
@@ -34,6 +37,7 @@ Use `defaults` for values that should be provided automatically but can still be
 ```ts
 const ApiError = createError({
   defaults: {
+    code: "API_ERROR",
     message: "An API error occurred.",
   },
 });
@@ -114,6 +118,8 @@ For `context`, this rule applies to matching properties: objects are merged recu
 
 Every created error needs a final `code`.
 
+When every error from a factory shares the same code, prefer setting it in `fixed`. Use a per-error code when calls to the same factory need different codes.
+
 It can come from:
 
 ```ts
@@ -154,7 +160,6 @@ Use `context.public` for information intended for error consumers:
 
 ```ts
 const error = ValidationError({
-  code: "INVALID_EMAIL",
   context: {
     public: {
       field: "email",
@@ -196,7 +201,6 @@ try {
   await repository.save(user);
 } catch (cause) {
   throw ValidationError({
-    code: "SAVE_FAILED",
     cause,
   });
 }
@@ -209,9 +213,7 @@ The original cause remains available through the standard `Error` API.
 Factory-created errors can be recognized with their factory:
 
 ```ts
-const error = ValidationError({
-  code: "INVALID_EMAIL",
-});
+const error = ValidationError();
 
 error instanceof ValidationError; // true
 error instanceof Error; // true

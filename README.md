@@ -22,33 +22,80 @@ Application errors should be consistent, reusable, and precisely typed.
 ```ts
 import { createError } from "@opinionated-ts/error-factory";
 
+// Create an error factory
 const ValidationError = createError({
   name: "ValidationError",
 
+  // Default values are used when the caller does not provide a value.
   defaults: {
     message: "Validation failed.",
   },
+
+  // Fixed values are always applied and cannot be overridden by the caller.
+  fixed: {
+    code: "VALIDATION_ERROR",
+  },
 });
 
+// Create an error instance, or throw it directly with `throw ValidationError({...})`.
 const error = ValidationError({
-  code: "INVALID_EMAIL",
   message: "The email address is invalid.",
   context: {
+    // Public context contains information that can safely be exposed to consumers.
     public: {
       field: "email",
+      reason: "invalid_format",
+    },
+
+    // Internal context is excluded from `toJSON()`.
+    internal: {
+      validator: "email-format",
     },
   },
 });
 
-error.code; // "INVALID_EMAIL"
+// The resulting values and their exact literal types are inferred automatically.
+error.name; // "ValidationError"
+error.code; // "VALIDATION_ERROR"
 error.message; // "The email address is invalid."
 error.context.public.field; // "email"
+error.context.internal.validator; // "email-format"
 
 error instanceof ValidationError; // true
 error instanceof Error; // true
 ```
 
 No custom error class. No manual error type. The type is inferred from the factory and the values you provide.
+
+## Exact Type Inference
+
+Exact inference does more than keep your errors type-safe. In editors like VS Code, it makes the complete shape of an error immediately accessible while you work.
+
+For example, hovering over `error` shows its exact inferred type:
+
+```ts
+const error: ErrorInstance<
+  "ValidationError",
+  "VALIDATION_ERROR",
+  "The email address is invalid.",
+  {
+    readonly public: {
+      readonly field: "email";
+      readonly reason: "invalid_format";
+    };
+    readonly internal: {
+      readonly validator: "email-format";
+    };
+  },
+  true
+>;
+```
+
+When errors are evaluated later in a `switch`, `if`, or similar control flow, `Ctrl + Space` can surface the exact values and properties available at that point, while type checking keeps the code aligned with the actual error shape.
+
+This makes errors easier to understand, inspect, and handle throughout your codebase without having to navigate back to where they were created.
+
+See [Type Inference](./docs/type-inference.md) for more details and examples.
 
 ## Guides
 
