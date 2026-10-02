@@ -9,11 +9,11 @@ Install the skill by choosing the command for your preferred package manager:
 <!-- cspell:ignore bunx -->
 
 ```bash
-npx skills add opinionated-ts/errors
+npx skills add opinionated-ts/error-factory
 
-# bunx skills add opinionated-ts/errors
-# pnpm dlx skills add opinionated-ts/errors
-# yarn dlx skills add opinionated-ts/errors
+# bunx skills add opinionated-ts/error-factory
+# pnpm dlx skills add opinionated-ts/error-factory
+# yarn dlx skills add opinionated-ts/error-factory
 ```
 
 The CLI finds the skills in this repository and prompts you to choose which agent to install them for and whether to install them globally or in the current project.
